@@ -2,7 +2,7 @@ class_name Portal
 extends Spatial
 
 export(NodePath) var portalPath
-var otherPortal:Portal = null
+var otherPortal:Spatial = null
 onready var mesh:MeshInstance = $PortalMesh
 onready var meshMaterial:Material = mesh.mesh.surface_get_material(0)
 onready var mesh2:MeshInstance = $PortalMesh2
@@ -22,6 +22,7 @@ func get_global_rotY(spat:Spatial)->float:
 	return r
 
 func _ready():
+	$Arrow.visible = false
 	#print(meshMaterial)
 	player.portals.append(self)
 	if (otherPortal == null):
@@ -31,10 +32,11 @@ func _ready():
 			if (otherPortal.otherPortal == null):
 				otherPortal.otherPortal = self
 		else:
-			print("Couldn't find portal! ", portalPath)
+			print(name, ": Couldn't find portal! `", portalPath, "`")
 	pass
 
 func update_camera(just_teleported):
+	if (otherPortal == null): return
 	var p1 = get_global_pos(self)
 	var p2 = get_global_pos(otherPortal)
 	var pp = get_global_pos(playerCamera)

@@ -10,6 +10,5 @@ script = ExtResource( 1 )
 transform = Transform( 0.844731, 0.397727, -0.358114, -0.397726, 0.91425, 0.0772101, 0.358114, 0.0772098, 0.93048, 0, 0, 0 )
 light_energy = 0.35
 shadow_enabled = true
-shadow_contact = 0.05
 directional_shadow_mode = 1
 directional_shadow_normal_bias = 0.2

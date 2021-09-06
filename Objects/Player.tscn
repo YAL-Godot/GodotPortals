@@ -6,10 +6,9 @@
 
 [sub_resource type="CapsuleShape" id=5]
 radius = 0.3
-height = 1.1
 
 [sub_resource type="CylinderShape" id=6]
-radius = 0.1
+radius = 0.3
 height = 1.7
 
 [sub_resource type="SphereShape" id=7]
