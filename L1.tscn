@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Blocks/WallWithPortalFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Blocks/GrassTile.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Blocks/RedBox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Blocks/GrassBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Checkpoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Objects/Night/NightProjector.tscn" type="PackedScene" id=13]
 
 [node name="Level" type="Spatial"]
 
@@ -200,3 +201,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -47 )
 
 [node name="GrassTile3" parent="R3" instance=ExtResource( 2 )]
 transform = Transform( 4, 0, -2.54292e-07, 0, 1, 0, 2.54292e-07, 0, 4, 0, 0, 0 )
+
+[node name="NightProjector" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
