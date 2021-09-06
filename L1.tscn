@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Blocks/WallWithPortalFrame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Blocks/GrassTile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/SunLight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Portal/Portal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Portal/Portal.gd" type="Script" id=5]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Blocks/Wall4m.tscn" type="PackedScene" id=7]
+
+[node name="Level" type="Spatial"]
+
+[node name="SunLight" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.743145, 0.497261, -0.447736, 0, 0.669131, 0.743145, 0.669131, 0.552264, -0.497261, 0, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+
+[node name="R1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+
+[node name="GrassTile" parent="R1" instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 1 )
+
+[node name="WallWithPortalFrame" parent="R1" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+
+[node name="Portal" parent="R1/WallWithPortalFrame" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+script = ExtResource( 5 )
+portalPath = NodePath("../../../R2/WallWithPortalFrame2/Portal")
+
+[node name="WallWithPortalFrame2" parent="R1" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+
+[node name="Wall" parent="R1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3 )
+
+[node name="Wall2" parent="R1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3 )
+
+[node name="R2" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -24 )
+
+[node name="GrassTile2" parent="R2" instance=ExtResource( 2 )]
+transform = Transform( -2, 0, 3.49691e-07, 0, 1, 0, -1.74846e-07, 0, -4, -9.53674e-07, 0, 4 )
+
+[node name="WallWithPortalFrame2" parent="R2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 0, 0 )
+
+[node name="Portal" parent="R2/WallWithPortalFrame2" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+script = ExtResource( 5 )
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
