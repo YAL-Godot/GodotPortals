@@ -49,6 +49,7 @@ shape = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45648, 0 )
+cull_mask = 19
 environment = ExtResource( 2 )
 near = 0.01
 
@@ -66,6 +67,7 @@ shadow_atlas_size = 1
 
 [node name="Camera" type="Camera" parent="PrevViewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94341, 1.36903 )
+cull_mask = 3
 
 [node name="MysteryPlaneThatFixesPortalFlicker" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
