@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Portal/PortalArea.gd" type="Script" id=1]
 [ext_resource path="res://Portal/PortalMaterial.tres" type="Material" id=2]
+[ext_resource path="res://Portal/Portal.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.1, 0.1, 0.3 )
@@ -21,6 +22,7 @@ extents = Vector3( 0.5, 0.1, 0.9 )
 extents = Vector3( 0.45, 0.05, 0.2 )
 
 [node name="Portal" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="Arrow" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94341, 1.36903 )
@@ -69,6 +71,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PortalDoorstep"]
 shape = SubResource( 5 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+aabb = AABB( -1, -1, -0.36986, 2, 2, 0.739719 )
 
 [connection signal="body_entered" from="PortalMesh/PortalArea" to="PortalMesh/PortalArea" method="_on_PortalArea_body_entered"]
 [connection signal="body_exited" from="PortalMesh/PortalArea" to="PortalMesh/PortalArea" method="_on_PortalArea_body_exited"]

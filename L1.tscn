@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Blocks/WallWithPortalFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Blocks/GrassTile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/SunLight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Portal/Portal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Portal/Portal.gd" type="Script" id=5]
+[ext_resource path="res://Objects/PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Blocks/Wall4m.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Blocks/WallSide.tscn" type="PackedScene" id=8]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Blocks/AltBox.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Blocks/AltFakeWall.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Blocks/BlueBox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://L1a.tscn" type="PackedScene" id=17]
 
 [node name="Level" type="Spatial"]
 
@@ -63,8 +64,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.5 )
 
 [node name="Portal" parent="R1/WallWithPortalFrame2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
-script = ExtResource( 5 )
 portalPath = NodePath("../../WallWithPortalFrame3/Portal")
+
+[node name="PlayerDetector" parent="R1/WallWithPortalFrame2/Portal" instance=ExtResource( 5 )]
+transform = Transform( 47.5, 0, 0, 0, 18, 0, 0, 0, 55, 5.25, 0.625, 10.375 )
+
+[node name="WallWithPortalFrame3" parent="R1" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -3.5 )
+
+[node name="Portal" parent="R1/WallWithPortalFrame3" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+
+[node name="PlayerDetector" parent="R1/WallWithPortalFrame3/Portal" instance=ExtResource( 5 )]
+transform = Transform( 40, 0, 1.83588e-06, 0, 18, 0, 1.83588e-06, 0, 19, 9, 0.625, 3.625 )
+
+[node name="PlayerDetector2" parent="R1/WallWithPortalFrame3/Portal" instance=ExtResource( 5 )]
+transform = Transform( 25, 0, -2.79753e-06, 0, 12, 0, -2.79753e-06, 0, 57, -9.53674e-07, 2.375, 11 )
 
 [node name="Wall" parent="R1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3 )
@@ -119,13 +134,6 @@ transform = Transform( 0, 1.49012e-08, 1, 0.258819, 0.965926, -1.0334e-09, -0.96
 [node name="Wall12" parent="R1" instance=ExtResource( 9 )]
 transform = Transform( 5, 0, 0, 0, 4, 0, 0, 0, 1, 6, 0, -3 )
 
-[node name="WallWithPortalFrame3" parent="R1" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -3.5 )
-
-[node name="Portal" parent="R1/WallWithPortalFrame3" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
-script = ExtResource( 5 )
-
 [node name="R2" type="Spatial" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -24 )
 
@@ -140,6 +148,12 @@ transform = Transform( 4, 0, -1.27146e-07, 0, 1, 0, 2.54292e-07, 0, 2, -2, 0, 16
 
 [node name="WallSide" parent="R2/GrassTile3" instance=ExtResource( 8 )]
 transform = Transform( -1, 0, -4.37114e-08, 0, 2, 0, 1.74846e-07, 0, -1, -1.90735e-06, -2, -0.999999 )
+
+[node name="BlueBox7" parent="R2" instance=ExtResource( 10 )]
+transform = Transform( 0.704416, -0.36977, 0.707107, 0.0871557, 5.97717, 7.6194e-09, -0.704416, 0.36977, 0.707107, -2.2875, -0.625, 5.24998 )
+
+[node name="BlueBox8" parent="R2" instance=ExtResource( 10 )]
+transform = Transform( 0.161524, 1.76261, -0.172442, -0.266048, -0.264453, -0.418148, -0.391316, 0.907351, 0.213111, -4.20001, -0.112499, 25.8375 )
 
 [node name="Wall14" parent="R2" instance=ExtResource( 7 )]
 transform = Transform( -1.31134e-07, 0, -1, 0, 1, 0, 3, 0, -4.37114e-08, 2, 0, -2 )
@@ -158,15 +172,19 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, -4
 
 [node name="Portal" parent="R2/WallWithPortalFrame6" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.25 )
-script = ExtResource( 5 )
 portalPath = NodePath("../../WallWithPortalFrame5/Portal")
+
+[node name="PlayerDetector" parent="R2/WallWithPortalFrame6/Portal" instance=ExtResource( 5 )]
+transform = Transform( 25.375, 0, 0, 0, 32.0625, 0, 0, 0, 25.375, 3.5, 1.875, 3.25 )
 
 [node name="WallWithPortalFrame5" parent="R2" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.5, 0, -3 )
 
 [node name="Portal" parent="R2/WallWithPortalFrame5" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -7.54979e-08, 0, 1, 0, 7.54979e-08, 0, -1, 0, 0, -0.25 )
-script = ExtResource( 5 )
+
+[node name="PlayerDetector" parent="R2/WallWithPortalFrame5/Portal" instance=ExtResource( 5 )]
+transform = Transform( 25.375, 0, 0, 0, 32.0625, 0, 0, 0, 25.375, -3, -0.875, 3.25 )
 
 [node name="Wall13" parent="R2" instance=ExtResource( 7 )]
 transform = Transform( -4.48042e-07, 0, -1, 0, 2, 0, 10.25, 0, -4.37114e-08, -6.5, -4, 8.25 )
@@ -181,13 +199,13 @@ transform = Transform( -1.75, 0, 1.50996e-07, 0, 1, 0, -2.64243e-07, 0, -1, 0.74
 transform = Transform( -1.5, 0, 1.50996e-07, 0, 1, 0, -2.26494e-07, 0, -1, -4.5, 0, 18.5 )
 
 [node name="GrassBox" parent="R2" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -2, 0, 1.99999 )
+transform = Transform( 0.984808, 0, 0.173648, 0, 2, 0, -0.173648, 0, 0.984808, -1.4, 0, 1.93748 )
 
 [node name="GrassBox2" parent="R2" instance=ExtResource( 11 )]
-transform = Transform( 0.965926, 0, 0.258819, 0, 2, 0, -0.258819, 0, 0.965926, -1.75, 0, 5.99998 )
+transform = Transform( 1, 0, -5.76205e-08, 0, 2, 0, 5.76205e-08, 0, 1, 0.0999994, 0, 6.03748 )
 
 [node name="GrassBox3" parent="R2" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 1.98417e-09, 0, 2, 0, -1.98417e-09, 0, 1, -1, -0.375, 10.875 )
+transform = Transform( 0.939693, 0, -0.34202, 0, 2, 0, 0.34202, 0, 0.939693, -0.375, -0.375, 10.875 )
 
 [node name="Checkpoint2" parent="R2" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.875, 0, -3.50002 )
@@ -278,6 +296,9 @@ transform = Transform( -6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, -24
 [node name="NightProjector" parent="R3" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -4, 0 )
 
+[node name="PlayerDetector" parent="R3/NightProjector" instance=ExtResource( 5 )]
+transform = Transform( 70.6291, 0, 0, 0, 26.25, 0, 0, 0, 35, 6.375, 3.125, 0 )
+
 [node name="BlueBox7" parent="R3" instance=ExtResource( 10 )]
 transform = Transform( 1.28033, -0.21967, -0.75, 0.75, 0.750001, 1.06066, 0.219671, -1.28033, 0.75, -14.9482, -3.5, -4.5 )
 
@@ -286,7 +307,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -1, -47 )
 
 [node name="Checkpoint4" parent="R4" instance=ExtResource( 12 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 1.90735e-05 )
-index = 3
+index = 4
 
 [node name="GrassBox" parent="R4" instance=ExtResource( 11 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.5, 0, 0 )
@@ -300,8 +321,14 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -10.5, 0, 0 )
 [node name="NightProjector2" parent="R4" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, 0, 0 )
 
+[node name="PlayerDetector" parent="R4/NightProjector2" instance=ExtResource( 5 )]
+transform = Transform( 53.625, 0, 0, 0, 38.4375, 0, 0, 0, 34.125, -3.75, 0, 0 )
+
 [node name="NightProjector3" parent="R4" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0 )
+
+[node name="PlayerDetector" parent="R4/NightProjector3" instance=ExtResource( 5 )]
+transform = Transform( 33.5, 0, 0, 0, 33.5, 0, 0, 0, 33.5, 0, 0, 0 )
 
 [node name="GrassTile7" parent="R4" instance=ExtResource( 2 )]
 transform = Transform( 6, 0, -3.81438e-07, 0, 1, 0, 3.81438e-07, 0, 6, -6, -3, 0 )
@@ -354,6 +381,10 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 2.5, 0, 1.50996e-07, 0, -1, -22, 
 [node name="R5" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -1, -47 )
 
+[node name="Checkpoint4" parent="R5" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22, 0, 8.00002 )
+index = 5
+
 [node name="GrassTile9" parent="R5" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, -2.54292e-07, 0, 1, 0, 6.3573e-08, 0, 4, -22, 0, 8 )
 
@@ -402,18 +433,23 @@ transform = Transform( 2, 0, -1.27146e-07, 0, 3.5, 0, 1.27146e-07, 0, 2, -10, 0,
 [node name="GrassBox6" parent="R5" instance=ExtResource( 11 )]
 transform = Transform( 2, 0, -1.27146e-07, 0, 3.5, 0, 1.27146e-07, 0, 2, -34, 0, 14 )
 
-[node name="Checkpoint4" parent="R5" instance=ExtResource( 12 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22, 0, 8.00002 )
-index = 3
-
 [node name="NightProjector3" parent="R5" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 13.875 )
+
+[node name="PlayerDetector" parent="R5/NightProjector3" instance=ExtResource( 5 )]
+transform = Transform( 29.5, 0, 0, 0, 29.5, 0, 0, 0, 29.5, 0, 0, -3.875 )
 
 [node name="Wall47" parent="R5" instance=ExtResource( 7 )]
 transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, -14.5, -7, 11.5 )
 
 [node name="Wall52" parent="R5" instance=ExtResource( 7 )]
 transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, -14.5, -7, 40 )
+
+[node name="Wall57" parent="R5" instance=ExtResource( 7 )]
+transform = Transform( 6.81475e-07, 0, 1, 0, 3, 0, -3.5, 0, 1.94707e-07, -20.5, -7, 44 )
+
+[node name="Wall58" parent="R5" instance=ExtResource( 7 )]
+transform = Transform( 6.81475e-07, 0, 1, 0, 3, 0, -3.5, 0, 1.94707e-07, -23, -7, 44 )
 
 [node name="Wall48" parent="R5" instance=ExtResource( 7 )]
 transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, -29.5, -7, 11.5 )
@@ -462,18 +498,162 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 
 
 [node name="Portal" parent="R5/WallWithPortalFrame3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
-script = ExtResource( 5 )
+
+[node name="PlayerDetector" parent="R5/WallWithPortalFrame3/Portal" instance=ExtResource( 5 )]
+transform = Transform( 16.875, 0, 5.68434e-14, 0, 16.875, 0, -5.68434e-14, 0, 16.875, 0, 1.625, 1.875 )
 
 [node name="WallWithPortalFrame4" parent="R5" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -36, 0, 14 )
 
 [node name="Portal" parent="R5/WallWithPortalFrame4" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
-script = ExtResource( 5 )
 portalPath = NodePath("../../WallWithPortalFrame3/Portal")
+
+[node name="PlayerDetector" parent="R5/WallWithPortalFrame4/Portal" instance=ExtResource( 5 )]
+transform = Transform( 16.875, 0, -5.68434e-14, 0, 16.875, 0, 5.68434e-14, 0, 16.875, 0, 0, 0 )
 
 [node name="BlueBox" parent="R5" instance=ExtResource( 16 )]
 transform = Transform( 0.375, 0, 0.649519, 0, 1.5, 0, -0.649519, 0, 0.375, -10.2408, 1.5, 13.7751 )
 
 [node name="RedBox" parent="R5" instance=ExtResource( 10 )]
 transform = Transform( 0.508139, 0, 0.55163, 0, 1.25, 0, -0.55163, 0, 0.508139, -34.222, 1, 13.8013 )
+
+[node name="R6" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.375, -1, 0 )
+
+[node name="Checkpoint4" parent="R6" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.125, -3, 2.12502 )
+index = 6
+
+[node name="GrassTile4" parent="R6" instance=ExtResource( 2 )]
+transform = Transform( 0, 0, 1, 1.5, 1, 0, -4, 0, 0, -0.125, -1.5, -3 )
+
+[node name="Wall59" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, 7.375, -7, 0.5 )
+
+[node name="Wall63" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, 7.375, -7, 29 )
+
+[node name="Wall64" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, -7.625, -7, 29 )
+
+[node name="Wall60" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -6.5, 0, 1.50996e-07, 0, 3, 0, -9.81473e-07, 0, -1, -7.625, -7, 0.5 )
+
+[node name="Wall61" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 3, 0, 1, 0, -1.62921e-07, -14.625, -7, 28.75 )
+
+[node name="Wall70" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -1.75, 0, 1.50996e-07, 0, 3, 0, -2.64243e-07, 0, -1, -16.375, -7, 27.75 )
+
+[node name="Wall71" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -1.75, 0, 1.50996e-07, 0, 3, 0, -2.64243e-07, 0, -1, -16.375, -7, 25.75 )
+
+[node name="Wall69" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -2.11797e-06, 0, -1, 0, 3, 0, 13, 0, -1.62921e-07, -14.625, -7, 13.25 )
+
+[node name="Wall62" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -1.79213e-06, 0, -1, 0, 3, 0, 11, 0, -1.62921e-07, 13.875, -7, 18.5 )
+
+[node name="Wall65" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -4.07302e-07, 0, -1, 0, 3, 0, 2.5, 0, -1.62921e-07, 13.875, -7, 3 )
+
+[node name="Wall66" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( 4, 0, -1.19209e-07, 0, 3, 0, 4.76837e-07, 0, 1, 18.375, -7, 5.5 )
+
+[node name="Wall68" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( 3, 0, -1.19209e-07, 0, 3, 0, 3.57628e-07, 0, 1, 19.375, -7, 14 )
+
+[node name="Wall67" parent="R6" instance=ExtResource( 7 )]
+transform = Transform( -7.33143e-07, 0, -1, 0, 3, 0, 4.5, 0, -1.62921e-07, 22.375, -7, 9.5 )
+
+[node name="NightProjector3" parent="R6" instance=ExtResource( 13 )]
+transform = Transform( 12, 0, 0, 0, 12, 0, 0, 0, 12, -0.125, -15.125, 15 )
+
+[node name="PlayerDetector" parent="R6/NightProjector3" instance=ExtResource( 5 )]
+transform = Transform( 6.25, 0, 0, 0, 6.25, 0, 0, 0, 6.25, 0, 0.958333, 0 )
+
+[node name="GrassBox14" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 2, 0, -1.27146e-07, 0, 3.5, 0, 1.27146e-07, 0, 2, -0.125, -3, 3 )
+
+[node name="GrassBox24" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 2, 0, -1.27146e-07, 0, 3.5, 0, 1.27146e-07, 0, 2, -0.125, 1, 27 )
+
+[node name="GrassBox25" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 2, 0, -4.76797e-08, 0, 3.5, 0, 1.27146e-07, 0, 0.75, -16.125, 1, 27 )
+
+[node name="GrassBox19" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 2.25, 0, -6.3573e-08, 0, 3.5, 0, 1.43039e-07, 0, 1, 16.125, -2.5, 6.5 )
+
+[node name="GrassBox20" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, -6.3573e-08, 0, 3.5, 0, 6.3573e-08, 0, 1, 21.375, -0.5, 12.5 )
+
+[node name="GrassBox21" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 1, 1.77636e-15, -1.27146e-07, 3.17865e-08, 0.433013, 1, 5.50558e-08, -0.25, 1.73205, 21.375, -1.625, 9.375 )
+
+[node name="GrassBox22" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( -1.44569e-07, 0.25, -0.433013, 3.17865e-08, 0.433013, 0.25, 1, 2.23782e-08, -7.05467e-08, 16.75, 0, 12.5 )
+
+[node name="GrassBox23" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, -6.3573e-08, 0, 3.5, 0, 6.3573e-08, 0, 1, 15.375, 1, 12.5 )
+
+[node name="GrassBox17" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, -1.27146e-07, 0, 3.5, 0, 6.3573e-08, 0, 2, -13.125, -0.125, 3 )
+
+[node name="GrassBox15" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 3.5, 0, 0.707107, 0, 0.707107, 5.375, -3.875, 6.875 )
+
+[node name="GrassBox16" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 3.5, 0, 0.866025, 0, 0.5, 8.5, -4.625, 10.25 )
+
+[node name="GrassBox18" parent="R6" instance=ExtResource( 11 )]
+transform = Transform( -8.9407e-08, 0, -1, 0, 3.5, 0, 1, 0, -8.9407e-08, 10, -5.25, 15 )
+
+[node name="AltBox7" parent="R6" instance=ExtResource( 14 )]
+transform = Transform( -8.74228e-08, 0, -3, 0, 1, 0, 2, 0, -1.31134e-07, -5.125, -2.5, 2 )
+
+[node name="AltBox9" parent="R6" instance=ExtResource( 14 )]
+transform = Transform( -6.55671e-08, 0, -10, 0, 1, 0, 1.5, 0, -4.37114e-07, -9.125, 0.5, 27 )
+
+[node name="AltBox8" parent="R6" instance=ExtResource( 14 )]
+transform = Transform( -8.74228e-08, 0, -3, 0, 1, 0, 2, 0, -1.31134e-07, -9.625, -1, 2 )
+
+[node name="AltBox13" parent="R6" instance=ExtResource( 14 )]
+transform = Transform( 1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, 1.41421, -10.125, -0.625, 7 )
+
+[node name="AltBox14" parent="R6" instance=ExtResource( 14 )]
+transform = Transform( -8.74228e-08, 0, -4, 0, 0.5, 0, 2, 0, -1.74846e-07, 11.875, -2.75, 6.5 )
+
+[node name="Wall2" parent="R6" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 2.5, 0, 1, 0, -4.37114e-08, 13.875, 2.5, 6.5 )
+
+[node name="TowerExitPortal" parent="R6" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.125, 1, 27 )
+
+[node name="Portal" parent="R6/TowerExitPortal" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+portalPath = NodePath("../../../R7/CSGCombiner/Doorways/CSGBox2/ExitPortal/Portal")
+
+[node name="PlayerDetector" parent="R6/TowerExitPortal/Portal" instance=ExtResource( 5 )]
+transform = Transform( 11.25, 0, 6.69331e-06, 0, 11.25, 0, -1.50599e-06, 0, 50, 0, 1.75, 10 )
+
+[node name="TowerEntryPortal" parent="R6" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.375, 1, 13.5 )
+
+[node name="Portal" parent="R6/TowerEntryPortal" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+portalPath = NodePath("../../../R7/CSGCombiner/Doorways/CSGBox/EntryPortal/Portal")
+
+[node name="PlayerDetector" parent="R6/TowerEntryPortal/Portal" instance=ExtResource( 5 )]
+transform = Transform( 20.625, 0, 0, 0, 20.625, 0, 0, 0, 20.625, -3.12502, 0, 4 )
+
+[node name="WallWithPortalFrame2" parent="R6" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.125, 1, 29 )
+
+[node name="FakeWall" parent="R6" instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.25, 0, 1, 0, -4.37114e-08, 13.875, -2.5, 6.5 )
+
+[node name="R7" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -4.25, -11 )
+
+[editable path="R7"]

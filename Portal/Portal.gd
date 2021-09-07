@@ -10,6 +10,9 @@ onready var viewport:Viewport = $Viewport
 onready var viewCamera:Camera = $Viewport/Camera
 onready var player:Player = get_node("/root/Level/Player")
 onready var playerCamera:Camera = player.get_node("Camera")
+onready var visibilityNotifier:VisibilityNotifier = $VisibilityNotifier
+onready var playerDetector:PlayerDetector = get_node_or_null("PlayerDetector")
+onready var playerDetector2:PlayerDetector = get_node_or_null("PlayerDetector2")
 
 func get_global_pos(spat:Spatial)->Vector3:
 	return spat.to_global(Vector3.ZERO)
@@ -32,7 +35,7 @@ func _ready():
 			if (otherPortal.otherPortal == null):
 				otherPortal.otherPortal = self
 		else:
-			print(name, ": Couldn't find portal! `", portalPath, "`")
+			print(get_path(), ": Couldn't find portal! `", portalPath, "`")
 	pass
 
 func update_camera(just_teleported):
@@ -61,10 +64,22 @@ func update_camera(just_teleported):
 		pass
 	#mesh.visible = !enable_print
 	#mesh2.visible = !enable_print
-	
+
+func is_visible():
+	if playerDetector == null: return false
+	return (playerDetector == null or playerDetector.has_player
+		or playerDetector2 != null and playerDetector2.has_player
+	) and visibilityNotifier.is_on_screen()
 
 func _process(_delta):
 	viewport.size = get_viewport().size
+	if (otherPortal == null): return
+	var p1 = get_global_pos(self)
+	var p2 = get_global_pos(otherPortal)
+	var pp = get_global_pos(playerCamera)
+	visible = is_visible() or otherPortal.is_visible()
+	if (Input.is_action_just_pressed("debug_dump")):
+		print(name, ".visible = ", visible)
 	pass
 
 func check_warp(_delta = 0.01):

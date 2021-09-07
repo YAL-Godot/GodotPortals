@@ -1,0 +1,202 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Blocks/WallWithPortalFrame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Portal/Portal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Blocks/GrassTile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Materials/Red.tres" type="Material" id=4]
+[ext_resource path="res://Materials/Blue.tres" type="Material" id=5]
+[ext_resource path="res://Objects/Checkpoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/PlayerDetector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Blocks/BlueBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Blocks/AltBox.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/Night/NightProjector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Blocks/RedBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Blocks/GrassBox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Blocks/Wall.tscn" type="PackedScene" id=13]
+
+[node name="Tower" type="Spatial"]
+
+[node name="GrassTile" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
+
+[node name="Checkpoint" parent="GrassTile" instance=ExtResource( 6 )]
+index = 7
+
+[node name="GrassBox" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.75, 0, 0, 0, 0.5, 0, 0, 0, 1, -2.25, 4.5, 2 )
+
+[node name="GrassBox2" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.5, 0, 0, 0, 0.25, 0, 0, 0, 1, 2.5, 8.125, -2 )
+
+[node name="Alley" type="Spatial" parent="."]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1.5, 0, -17.5074 )
+
+[node name="Wall" parent="Alley" instance=ExtResource( 13 )]
+transform = Transform( -1.31134e-07, 0, -1, 0, 2, 0, 3, 0, -4.37114e-08, -1.5, 2, 1.5 )
+
+[node name="Wall3" parent="Alley" instance=ExtResource( 13 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -1, 2, -4 )
+
+[node name="Wall4" parent="Alley" instance=ExtResource( 13 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -3, 2, -1.5 )
+
+[node name="Wall5" parent="Alley" instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1, 0, 2, 0, -1.5, 0, -4.37114e-08, -5, 2, -3 )
+
+[node name="Wall2" parent="Alley" instance=ExtResource( 13 )]
+transform = Transform( -1.96701e-07, 0, -1, 0, 2, 0, 4.5, 0, -4.37114e-08, 1, 2, 1.19209e-07 )
+
+[node name="GrassTile2" parent="Alley" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 5.3765e-06, 0, 1, 0, -1.34413e-06, 0, 4, 0, 0, 0 )
+
+[node name="GrassTile3" parent="Alley" instance=ExtResource( 3 )]
+transform = Transform( 2, 0, 1.34413e-06, 0, 1, 0, -2.68825e-06, 0, 1, -3, 0, -3 )
+
+[node name="F1" parent="Alley" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74232e-08, 0, 1, 0, 8.74232e-08, 0, -1, 1.90735e-06, 0, 4 )
+
+[node name="Portal" parent="Alley/F1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+portalPath = NodePath("../../../CSGCombiner/Doorways/CSGBox4/F2to1/Portal")
+
+[node name="PlayerDetector" parent="Alley/F1/Portal" instance=ExtResource( 7 )]
+transform = Transform( 14.75, 0, -9.46451e-06, 0, 14.75, 0, -9.46451e-06, 0, 58.0545, -0.814949, 1.67945, 11.1172 )
+
+[node name="F2" parent="Alley" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4 )
+
+[node name="Portal" parent="Alley/F2" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+portalPath = NodePath("../../../CSGCombiner/Doorways/CSGBox3/F1to2/Portal")
+
+[node name="PlayerDetector" parent="Alley/F2/Portal" instance=ExtResource( 7 )]
+transform = Transform( 14.75, 0, -1.40382e-05, 0, 14.75, 0, -1.40382e-05, 0, 60.6296, 0.485674, 1.67945, 11.3188 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, 0 )
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.951129, -0.19738, 0.237477, 0.15356, 0.969542, 0.190809, -0.267906, -0.145017, 0.952469, 0, 0, 0 )
+width = 11.0
+height = 75.0
+depth = 11.0
+
+[node name="Bits" type="CSGCombiner" parent="CSGCombiner"]
+transform = Transform( 0.939693, 0, 0.34202, -0.17101, 0.866025, 0.469846, -0.296198, -0.5, 0.813798, -4, -3.875, -4.25 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( 1, 0, 1.49012e-08, -1.49012e-08, 1, 5.96046e-08, 0, 0, 1, 0, 0, 0 )
+material = ExtResource( 4 )
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( -0.657183, -0.585052, 0.475209, 0.0794106, 0.573223, 0.815543, -0.749537, 0.573699, -0.330254, -4.23072, 4.26197, 6.71116 )
+material = ExtResource( 5 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( -0.410594, 0.462084, -0.862747, -1.9377, 0.028794, 0.245967, 0.276999, 0.886369, 0.441779, 6.66574, 1.57242, 8.00025 )
+material = ExtResource( 5 )
+
+[node name="CSGBox8" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( -0.821188, 0.231042, -0.431373, -3.8754, 0.0143969, 0.122984, 0.553997, 0.443184, 0.220889, 2.80044, 15.5774, 5.82847 )
+material = ExtResource( 5 )
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( -0.744371, 0.23439, 0.625278, 0.0971812, 0.964428, -0.245833, -0.660657, -0.122225, -0.740671, 6.14055, -1.29367, 11.2706 )
+material = ExtResource( 4 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner/Bits"]
+transform = Transform( 0.592375, -0.619093, -0.515576, -0.382098, 0.347509, -0.856295, 0.709292, 0.704248, -0.030699, 4.48586, 11.1546, 7.41092 )
+material = ExtResource( 4 )
+
+[node name="MiddleCut" type="CSGBox" parent="CSGCombiner"]
+operation = 2
+width = 6.0
+height = 84.5
+depth = 6.0
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.789755, 0.257834, -0.556604, -0.224144, 0.965926, 0.12941, 0.571005, 0.0225576, 0.820637, -12.1, 20.375, -9.75 )
+operation = 2
+width = 22.0
+height = 51.75
+depth = 30.0
+
+[node name="Inner bits" type="Spatial" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="BlueBox" parent="CSGCombiner/Inner bits" instance=ExtResource( 8 )]
+transform = Transform( 0.892228, -0.34443, 0.584112, 0.327339, 0.938812, 0.214298, -0.311091, 7.45058e-09, 1.90076, 2.3787, -6.20519, -2.25788 )
+
+[node name="BlueBox2" parent="CSGCombiner/Inner bits" instance=ExtResource( 8 )]
+transform = Transform( 0.0151312, 0.687503, -2.17665, -0.484955, -0.155239, -0.562658, -0.120788, 0.709395, 1.98635, -3.12129, 1.5448, 2.36712 )
+
+[node name="AltBox" parent="CSGCombiner/Inner bits" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.225622, 1.72286, 0, -0.107679, 3.60995, 2.4778, -3.83088, 1.27902 )
+
+[node name="NightProjector" parent="CSGCombiner/Inner bits" instance=ExtResource( 10 )]
+transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0, 0.5, 3, -2.75, -2 )
+
+[node name="PlayerDetector" parent="CSGCombiner/Inner bits/NightProjector" instance=ExtResource( 7 )]
+transform = Transform( 20.25, 5.68434e-14, 0, -5.68434e-14, 20.25, 0, 0, 0, 20.25, -0.999999, 1.25, 1 )
+
+[node name="RedBox" parent="CSGCombiner/Inner bits" instance=ExtResource( 11 )]
+transform = Transform( 0.386532, -1.80317, -0.0850914, -0.0970257, 0.573037, -0.287549, 0.575482, 1.30774, 0.00867261, -0.397323, 0.71423, -2.13935 )
+
+[node name="RedBox2" parent="CSGCombiner/Inner bits" instance=ExtResource( 11 )]
+transform = Transform( 0.106235, -1.33149, -0.134581, -0.267109, 0.272761, -0.451784, 0.638253, 0.335771, -0.166671, 0.178986, -2.65364, 2.4888 )
+
+[node name="Doorways" type="CSGCombiner" parent="CSGCombiner"]
+operation = 2
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Doorways"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3.875, -3.25 )
+height = 4.0
+depth = 3.8558
+
+[node name="EntryPortal" parent="CSGCombiner/Doorways/CSGBox" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, -1.875, 0.25 )
+
+[node name="Portal" parent="CSGCombiner/Doorways/CSGBox/EntryPortal" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+
+[node name="PlayerDetector" parent="CSGCombiner/Doorways/CSGBox/EntryPortal/Portal" instance=ExtResource( 7 )]
+transform = Transform( 14.75, 0, 0, 0, 14.75, 0, 0, 0, 14.75, 2, 2.625, 3.25 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner/Doorways"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.75, 0.75, 2 )
+height = 4.0
+depth = 7.21739
+
+[node name="F1to2" parent="CSGCombiner/Doorways/CSGBox3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3.57628e-07, -2, -0.25 )
+
+[node name="Portal" parent="CSGCombiner/Doorways/CSGBox3/F1to2" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+
+[node name="PlayerDetector" parent="CSGCombiner/Doorways/CSGBox3/F1to2/Portal" instance=ExtResource( 7 )]
+transform = Transform( 14.75, 0, 0, 0, 14.75, 0, 0, 0, 14.75, 2, 1.67945, 3.25 )
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner/Doorways"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2.75, 4.32288, -2 )
+height = 4.0
+depth = 9.24848
+
+[node name="F2to1" parent="CSGCombiner/Doorways/CSGBox4" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3.57628e-07, -2, -0.25 )
+
+[node name="Portal" parent="CSGCombiner/Doorways/CSGBox4/F2to1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0, -0.25 )
+
+[node name="PlayerDetector" parent="CSGCombiner/Doorways/CSGBox4/F2to1/Portal" instance=ExtResource( 7 )]
+transform = Transform( 14.75, 0, 0, 0, 14.75, 0, 0, 0, 14.75, 2, -0.215626, 3.25 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/Doorways"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.875, 13.375, 0.625 )
+height = 4.0
+
+[node name="ExitPortal" parent="CSGCombiner/Doorways/CSGBox2" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.125, -2, 0 )
+
+[node name="Portal" parent="CSGCombiner/Doorways/CSGBox2/ExitPortal" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
