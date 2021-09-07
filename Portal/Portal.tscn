@@ -14,10 +14,10 @@ resource_local_to_scene = true
 material = ExtResource( 2 )
 size = Vector2( 1, 1.8 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 0.5, 0.1, 0.9 )
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.45, 0.05, 0.2 )
 
 [node name="Portal" type="Spatial"]
@@ -42,6 +42,7 @@ shadow_atlas_size = 1
 
 [node name="Camera" type="Camera" parent="Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94341, 0.36903 )
+cull_mask = 3
 
 [node name="PortalMesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
@@ -56,7 +57,7 @@ script = ExtResource( 1 )
 
 [node name="PortalShape" type="CollisionShape" parent="PortalMesh/PortalArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="PortalMesh2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, -0.1 )
@@ -67,7 +68,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PortalDoorstep"]
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [connection signal="body_entered" from="PortalMesh/PortalArea" to="PortalMesh/PortalArea" method="_on_PortalArea_body_entered"]
 [connection signal="body_exited" from="PortalMesh/PortalArea" to="PortalMesh/PortalArea" method="_on_PortalArea_body_exited"]

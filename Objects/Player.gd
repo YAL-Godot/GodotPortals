@@ -9,7 +9,7 @@ export var jump_speed = 9.8
 export var mouse_sensitivity = 0.003
 export var acceleration = 9.0
 export var friction = 10.0
-export var fall_limit = -10.0
+export var fall_limit = -8.0
 
 onready var camera:Camera = $Camera
 
