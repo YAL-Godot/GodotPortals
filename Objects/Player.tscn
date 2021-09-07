@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
 [ext_resource path="res://Portal/Portal.gdshader" type="Shader" id=3]
+[ext_resource path="res://Materials/help.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.3
@@ -77,4 +78,28 @@ material/0 = null
 __meta__ = {
 "_editor_description_": "What in the actual heck
 Try making this invisible and go back and forth through a portal while facing sideways/down"
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+text = "0s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
 }
