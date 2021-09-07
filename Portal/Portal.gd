@@ -11,8 +11,8 @@ onready var viewCamera:Camera = $Viewport/Camera
 onready var player:Player = get_node("/root/Level/Player")
 onready var playerCamera:Camera = player.get_node("Camera")
 onready var visibilityNotifier:VisibilityNotifier = $VisibilityNotifier
-onready var playerDetector:PlayerDetector = get_node_or_null("PlayerDetector")
-onready var playerDetector2:PlayerDetector = get_node_or_null("PlayerDetector2")
+onready var playerDetector:Spatial = get_node_or_null("PlayerDetector")
+onready var playerDetector2:Spatial = get_node_or_null("PlayerDetector2")
 
 func get_global_pos(spat:Spatial)->Vector3:
 	return spat.to_global(Vector3.ZERO)

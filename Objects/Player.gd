@@ -140,6 +140,9 @@ func _input(event):
 		if event.scancode == KEY_F4: mouse_sensitivity_x += 0.001
 		if event.scancode == KEY_F5: mouse_sensitivity_y -= 0.001
 		if event.scancode == KEY_F6: mouse_sensitivity_y += 0.001
+		if event.scancode == KEY_F7:
+			var light:DirectionalLight = get_node("/root/Level/SunLight/DirectionalLight")
+			light.shadow_enabled = !light.shadow_enabled
 	if event is InputEventMouseButton:
 		if help.visible: help.visible = false
 		if mouse_capture and OS.has_feature('JavaScript'):
